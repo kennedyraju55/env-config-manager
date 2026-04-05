@@ -28,22 +28,22 @@ def main():
     # Parse a .env file into key-value pairs.
     print("📝 Example: parse_env_file()")
     result = parse_env_file(
-        filepath="sample.txt"  # Replace with actual file path
+        filepath="sample.txt"
     )
     print(f"   Result: {result}")
     print()
     # Detect potential secrets in environment variables.
     print("📝 Example: detect_secrets()")
     result = detect_secrets(
-        env_vars={"DATABASE_URL": "postgres://localhost/mydb", "API_KEY": "xxx", "DEBUG": "true"}
+        env_vars={}
     )
     print(f"   Result: {result}")
     print()
     # Compare two environment configurations.
     print("📝 Example: compare_envs()")
     result = compare_envs(
-        env1=5,
-        env2=5
+        env1={},
+        env2={}
     )
     print(f"   Result: {result}")
     print()
