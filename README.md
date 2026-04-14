@@ -1,71 +1,100 @@
-# 🔐 Environment Configuration Manager
+# ⚙️ env-config-manager
 
-Manage, validate, and generate secure environment configurations locally.
+Generate secure environment configs intelligently — zero exposure of sensitive settings
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
-[![Ollama](https://img.shields.io/badge/Ollama-Compatible-green.svg)](https://ollama.com)
-[![Gemma 3](https://img.shields.io/badge/Gemma-3-orange.svg)](https://ollama.com)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Privacy First](https://img.shields.io/badge/Privacy-First-red.svg)](#why-local)
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org)
+[![Ollama](https://img.shields.io/badge/Ollama-Local%20LLM-green)](https://ollama.com)
+[![Gemma 3](https://img.shields.io/badge/Gemma%203-Language%20Model-orange)](https://ollama.com/library/gemma2)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
+[![Privacy First](https://img.shields.io/badge/Privacy-First-darkgreen)](#why-local)
 
-## What It Does
+## 🎯 What it does
 
-- **Generates .env files** with intelligent defaults for your application
-- **Validates environment variables** against schema requirements
-- **Manages multiple environments** (dev, staging, production) from one template
-- **Secrets stay local** — never exposed to external services
+- Create properly structured .env and environment config files from requirements
+- Suggests best practices for secrets management, database connections, API keys
+- Generates configs for different environments: dev, staging, production
+- All sensitive data generation happens locally on your machine
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- **Python 3.8+** — Core management engine
-- **Gemma 3** (via Ollama) — Configuration intelligence
-- **python-dotenv** — Environment variable handling
-- **Pydantic** — Configuration validation
+- Streamlit (Web UI)
+- FastAPI (Backend API)
+- Ollama (Local LLM inference)
+- Gemma 3 (Language model)
+- Python 3.8+
 
-## Quick Start
+## ⚡ Quick Start
 
-`ash
-# Clone the repository
-git clone https://github.com/kennedyraju55/env-config-manager.git
-cd env-config-manager
+1. **Clone the repository**
+   \\\ash
+   git clone https://github.com/kennedyraju55/env-config-manager.git
+   cd env-config-manager
+   \\\
 
-# Install dependencies
-pip install -r requirements.txt
+2. **Install dependencies**
+   \\\ash
+   pip install -r requirements.txt
+   \\\
 
-# Pull Gemma 3 model locally
-ollama pull gemma3:4b
+3. **Download and start Ollama**
+   - Download from [ollama.com](https://ollama.com)
+   - Start Ollama service:
+   \\\ash
+   ollama serve
+   \\\
+   - In another terminal, pull Gemma 3:
+   \\\ash
+   ollama pull gemma2
+   \\\
 
-# Generate environment config
-python manager.py --template app-config.yml --environment production
-`
+4. **Run the application**
+   \\\ash
+   streamlit run app.py
+   \\\
 
-## Architecture
+Access the app at: http://localhost:8501
 
-`
-config schema + requirements
-    ↓
-[Gemma 3 LLM Processing] ← offline, local
-    ↓
-validation rules
-    ↓
-.env file (with secure handling)
-`
+## 🏗️ Architecture
 
-## Why Local?
+\\\
+User specifies config requirements → Streamlit UI → FastAPI processes request → Ollama generates config using Gemma 3 → Returns secure templates → Save locally
+\\\
 
-- **Security**: Sensitive environment variables never transmitted or stored in the cloud
-- **Privacy**: Full control over configuration data — no third-party access
-- **Compliance**: Meet regulations requiring local secret management
-- **Speed**: Instant configuration without external API calls
+All processing happens locally on your machine. No data is sent to external services.
 
-## Contributing
+## 🔒 Why Local?
 
-Contributions welcome! Please fork, create a feature branch, and submit a pull request.
+Environment configs contain database passwords, API keys, service tokens, and deployment secrets. Generating these locally ensures your sensitive configuration never transmitted to external servers.
 
-## License
+## 📦 Environment Variables
 
-MIT License — see [LICENSE](LICENSE) for details.
+Create a \.env\ file in the project root:
+
+\\\nv
+OLLAMA_BASE_URL=http://localhost:11434
+MODEL_NAME=gemma2
+LOG_LEVEL=INFO
+\\\
+
+## 🤝 Contributing
+
+We love contributions! Here's how to help:
+
+1. Fork the repository
+2. Create a feature branch: \git checkout -b feature/your-feature\
+3. Make your changes and commit: \git commit -am 'Add feature'\
+4. Push to the branch: \git push origin feature/your-feature\
+5. Submit a Pull Request
+
+Please ensure:
+- Code follows PEP 8 style guidelines
+- Changes include appropriate comments
+- Updates to documentation are included
+
+## 📄 License
+
+This project is licensed under the MIT License — see [LICENSE](./LICENSE) for details.
 
 ---
 
-*Part of 114+ privacy-first AI tools by Nrk Raju*
+**Part of 114+ privacy-first AI tools by [Nrk Raju](https://github.com/kennedyraju55)**
